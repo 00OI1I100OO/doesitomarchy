@@ -36,8 +36,8 @@
 <div class="apidoc-body">
 <p id="copy-status" class="sr-only" aria-live="polite"></p>
 
-<section class="ad" id="intro" aria-labelledby="intro-h">
-  <div class="ad-text">
+<section class="ref" id="intro" aria-labelledby="intro-h">
+  <div class="ref-text">
     <h1 id="intro-h">API Reference</h1>
     <p class="lead">Test tools send their diagnostic reports straight in, and everything on DoesItOmarchy is open data: read the catalog and the test results as JSON.</p>
     <table class="defs">
@@ -51,11 +51,11 @@
       </tbody>
     </table>
   </div>
-  <div class="ad-code">{{template "apicode" index .Req "index"}}{{template "apicode" index .Res "index"}}</div>
+  <div class="ref-code">{{template "apicode" index .Req "index"}}{{template "apicode" index .Res "index"}}</div>
 </section>
 
-<section class="ad" id="ai" aria-labelledby="ai-h">
-  <div class="ad-text">
+<section class="ref" id="ai" aria-labelledby="ai-h">
+  <div class="ref-text">
     <h2 id="ai-h">Building with AI</h2>
     <p>AI assistants and agents can build on this API too. Give them these, so they don't have to guess:</p>
     <ul>
@@ -72,11 +72,11 @@
     </ul>
     <p>Start your assistant with the prompt beside this, then describe what you want.</p>
   </div>
-  <div class="ad-code">{{template "apicode" .Prompt}}</div>
+  <div class="ref-code">{{template "apicode" .Prompt}}</div>
 </section>
 
-<section class="ad" id="mcp" aria-labelledby="mcp-h">
-  <div class="ad-text">
+<section class="ref" id="mcp" aria-labelledby="mcp-h">
+  <div class="ref-text">
     <h2 id="mcp-h">Connect an AI assistant (MCP)</h2>
     <p class="endpoint"><span class="m">POST</span> <code>{{.Base}}/mcp</code></p>
     <p><a href="/api/mcp-cheatsheet.pdf">Cheat sheet (PDF, 1 page)</a></p>
@@ -104,11 +104,11 @@
       <li>We record which tool was called, not what was asked (<a href="/privacy">privacy</a>).</li>
     </ul>
   </div>
-  <div class="ad-code">{{range .MCP}}{{template "apicode" .}}{{end}}</div>
+  <div class="ref-code">{{range .MCP}}{{template "apicode" .}}{{end}}</div>
 </section>
 
-<section class="ad" id="quickstart" aria-labelledby="quickstart-h">
-  <div class="ad-text">
+<section class="ref" id="quickstart" aria-labelledby="quickstart-h">
+  <div class="ref-text">
     <h2 id="quickstart-h">Quickstart</h2>
     <p>There are two ways in. Both end at a configuration, where the verdicts are.</p>
     <figure class="diagram">
@@ -142,11 +142,11 @@
       <li><strong>You have the hardware:</strong> send its IDs to <a href="#match">Identify a Mac</a> and get the configuration back.</li>
     </ul>
   </div>
-  <div class="ad-code">{{template "apicode" .Quickstart}}</div>
+  <div class="ref-code">{{template "apicode" .Quickstart}}</div>
 </section>
 
-<section class="ad" id="errors" aria-labelledby="errors-h">
-  <div class="ad-text">
+<section class="ref" id="errors" aria-labelledby="errors-h">
+  <div class="ref-text">
     <h2 id="errors-h">Errors</h2>
     <p>Errors come with an HTTP status and a JSON body. <code>error</code> says what went wrong. For reports, <code>problems</code> lists every problem, not just the first.</p>
     <table class="defs codes">
@@ -162,14 +162,14 @@
       </tbody>
     </table>
   </div>
-  <div class="ad-code">{{template "apicode" .Error}}</div>
+  <div class="ref-code">{{template "apicode" .Error}}</div>
 </section>
 
-<section class="ad" id="sources" aria-labelledby="sources-h">
-  <div class="ad-text">
+<section class="ref" id="sources" aria-labelledby="sources-h">
+  <div class="ref-text">
     <h2 id="sources-h">Becoming a source</h2>
     <p>A source is a test tool that submits reports. To get a source key, <a href="/api/register">register your tool</a>: its name, a link to its source code, a contact email and what it tests. A maintainer reviews the request, and you collect the key once from a private link.</p>
-    <div class="ad-cta"><a class="btn-cta btn-two" href="/api/register"><span>Register report source</span><span class="btn-sub">Request source API key</span></a></div>
+    <div class="ref-cta"><a class="btn-cta btn-two" href="/api/register"><span>Register report source</span><span class="btn-sub">Request source API key</span></a></div>
     <ul>
       <li>Keys look like <code>doi_</code> followed by 32 characters. We keep only a hash, so a lost key is replaced, not recovered.</li>
       <li>Keep the key in your tool's build or server, not in a public repository. If it leaks, ask for a new key link; the old key stops working at once.</li>
@@ -177,7 +177,7 @@
     </ul>
     <p>Every report goes through review, as the diagram shows.</p>
   </div>
-  <div class="ad-code">
+  <div class="ref-code">
     <figure class="diagram diagram-code">
       <svg viewBox="0 0 400 352" role="img" aria-labelledby="dg-sub-t">
         <title id="dg-sub-t">1. Your tool runs the tests. 2. It shows the tester the consent notice; they can stop. 3. POST /reports with your key; the reply is 201 with a code, state pending. 4. A maintainer reviews it; GET /reports/{code} shows its state. 5. Accepted: the results show on the site. Or rejected, with a reason.</title>
@@ -214,19 +214,19 @@
   </div>
 </section>
 
-<section class="ad" id="submit" aria-labelledby="submit-h">
-  <div class="ad-text">
+<section class="ref" id="submit" aria-labelledby="submit-h">
+  <div class="ref-text">
     <h2 id="submit-h">Submit a report</h2>
     {{template "endpoint" index .Req "submit"}}
     <p>Send one report per test run, as JSON or YAML, with your key in the <code>Authorization</code> header.</p>
     <p>You don't need the configuration ID. Send the model identifier and the hardware probe, and the server finds the configuration. Include the CPU name (<code>hardware.cpu</code>): it tells apart configurations that share every device. If the probe still fits several, the report is taken anyway, and a maintainer picks the right one.</p>
     <p>A new report is <code>pending</code> until a maintainer reviews it. Keep its <code>code</code> to <a href="#report">check on it</a>. <code>flags</code> lists anything a maintainer will look at, such as a possible duplicate.</p>
   </div>
-  <div class="ad-code">{{template "apicode" index .Req "submit"}}{{template "apicode" index .Res "submit"}}</div>
+  <div class="ref-code">{{template "apicode" index .Req "submit"}}{{template "apicode" index .Res "submit"}}</div>
 </section>
 
-<section class="ad" id="format" aria-labelledby="format-h">
-  <div class="ad-text">
+<section class="ref" id="format" aria-labelledby="format-h">
+  <div class="ref-text">
     <h2 id="format-h">The report format</h2>
     <p>Format <code>doesitomarchy/report/v1</code>, described in full by <a href="/api/v1/schema">the schema</a>. Items use the IDs from <a href="#capabilities">List criteria</a>; leave out anything you didn't test. Each result says how it was tested: <code>automatic</code> (the tool checked), <code>observed</code> (the tester looked), <code>fixture</code> (with test equipment, such as a loopback plug) or <code>challenge</code> (the tool showed or played a random code and the tester, a phone or a capture card gave it back; it counts like <code>observed</code>).</p>
     <ul>
@@ -241,11 +241,11 @@
       <li>Don't send serial numbers, network addresses, or user and computer names. They're removed anyway, but it's better never to send them.</li>
     </ul>
   </div>
-  <div class="ad-code">{{template "apicode" .Example}}{{template "apicode" index .Req "schema"}}</div>
+  <div class="ref-code">{{template "apicode" .Example}}{{template "apicode" index .Req "schema"}}</div>
 </section>
 
-<section class="ad" id="live" aria-labelledby="live-h">
-  <div class="ad-text">
+<section class="ref" id="live" aria-labelledby="live-h">
+  <div class="ref-text">
     <h2 id="live-h">Live boots</h2>
     <p>A report from a live boot, such as <a href="https://omaboot.live" rel="noopener">OmaBoot? Live</a>, says <code>"context": "live"</code>. Its results count like an installed system's, with a <em>Live boot</em> tag, for the criteria a live boot can decide.</p>
     <ul>
@@ -256,11 +256,11 @@
     </ul>
     <p>How live results and challenges are judged is on the <a href="/methodology#live">methodology</a> page.</p>
   </div>
-  <div class="ad-code">{{template "apicode" .LiveExample}}</div>
+  <div class="ref-code">{{template "apicode" .LiveExample}}</div>
 </section>
 
-<section class="ad" id="snapshot" aria-labelledby="snapshot-h">
-  <div class="ad-text">
+<section class="ref" id="snapshot" aria-labelledby="snapshot-h">
+  <div class="ref-text">
     <h2 id="snapshot-h">Catalog snapshot</h2>
     {{template "endpoint" index .Req "snapshot"}}
     <p>What a test tool needs from the catalog to build, check and match a report offline, in one file: the data <a href="#match">Identify a Mac</a> matches on, the criteria with their <code>live</code> flags, and the registered OmaBoot? <code>fixes</code>. Go tools can match on it with the <code>pkg/match</code> package and check a report with <code>pkg/report</code>, the same code the server runs.</p>
@@ -270,30 +270,30 @@
       <li><code>version</code> changes whenever the content does, and the <code>ETag</code> header carries it. Send it back in <code>If-None-Match</code>, and an unchanged snapshot answers <code>304 Not Modified</code> with no body.</li>
     </ul>
   </div>
-  <div class="ad-code">{{template "apicode" index .Req "snapshot"}}{{template "apicode" index .Res "snapshot"}}</div>
+  <div class="ref-code">{{template "apicode" index .Req "snapshot"}}{{template "apicode" index .Res "snapshot"}}</div>
 </section>
 
-<section class="ad" id="consent" aria-labelledby="consent-h">
-  <div class="ad-text">
+<section class="ref" id="consent" aria-labelledby="consent-h">
+  <div class="ref-text">
     <h2 id="consent-h">The consent notice</h2>
     <p>Before your tool submits, it must show the tester this notice (or a faithful translation) and let them stop. Submitting counts as agreeing. Send the text you showed in <code>consent_notice</code>.</p>
     <blockquote class="notice-text"><p>{{.Notice}}</p></blockquote>
     <p>What happens to the data is set out on the <a href="/privacy">privacy page</a>.</p>
   </div>
-  <div class="ad-code">{{template "apicode" .NoticeCode}}</div>
+  <div class="ref-code">{{template "apicode" .NoticeCode}}</div>
 </section>
 
-<section class="ad" id="report" aria-labelledby="report-h">
-  <div class="ad-text">
+<section class="ref" id="report" aria-labelledby="report-h">
+  <div class="ref-text">
     <h2 id="report-h">Check a report</h2>
     {{template "endpoint" index .Req "report"}}
     <p>Where a report stands: <code>pending</code>, <code>accepted</code> (with its public <code>url</code>), <code>rejected</code> (with the <code>reason</code>) or <code>retracted</code> (with both).</p>
   </div>
-  <div class="ad-code">{{template "apicode" index .Req "report"}}{{template "apicode" index .Res "report"}}</div>
+  <div class="ref-code">{{template "apicode" index .Req "report"}}{{template "apicode" index .Res "report"}}</div>
 </section>
 
-<section class="ad" id="macs" aria-labelledby="macs-h">
-  <div class="ad-text">
+<section class="ref" id="macs" aria-labelledby="macs-h">
+  <div class="ref-text">
     <h2 id="macs-h">List Macs</h2>
     {{template "endpoint" index .Req "macs"}}
     <p>Every Intel Mac in the catalog, with its verdicts and its configuration IDs.</p>
@@ -309,11 +309,11 @@
       </tbody>
     </table>
   </div>
-  <div class="ad-code">{{template "apicode" index .Req "macs"}}{{template "apicode" index .Res "macs"}}</div>
+  <div class="ref-code">{{template "apicode" index .Req "macs"}}{{template "apicode" index .Res "macs"}}</div>
 </section>
 
-<section class="ad" id="mac" aria-labelledby="mac-h">
-  <div class="ad-text">
+<section class="ref" id="mac" aria-labelledby="mac-h">
+  <div class="ref-text">
     <h2 id="mac-h">Get a Mac</h2>
     {{template "endpoint" index .Req "mac"}}
     <p>One Mac with all its configurations.</p>
@@ -326,11 +326,11 @@
     <h3>Returns</h3>
     <p>Everything <a href="#macs">List Macs</a> does, plus <code>efi</code> (32 or 64), <code>security_chip</code>, <code>hard_blocker</code> (why it can never run Omarchy, if it can't), <code>board_ids</code>, and <code>configurations</code>, each one in full, as <a href="#config">Get a configuration</a> returns it.</p>
   </div>
-  <div class="ad-code">{{template "apicode" index .Req "mac"}}{{template "apicode" index .Res "mac"}}</div>
+  <div class="ref-code">{{template "apicode" index .Req "mac"}}{{template "apicode" index .Res "mac"}}</div>
 </section>
 
-<section class="ad" id="config" aria-labelledby="config-h">
-  <div class="ad-text">
+<section class="ref" id="config" aria-labelledby="config-h">
+  <div class="ref-text">
     <h2 id="config-h">Get a configuration</h2>
     {{template "endpoint" index .Req "config"}}
     <p>A configuration is one release of a Mac with the parts that set it apart, such as its GPU. Its verdict comes from the <a href="/methodology">methodology</a>.</p>
@@ -351,20 +351,20 @@
       </tbody>
     </table>
   </div>
-  <div class="ad-code">{{template "apicode" index .Req "config"}}{{template "apicode" index .Res "config"}}</div>
+  <div class="ref-code">{{template "apicode" index .Req "config"}}{{template "apicode" index .Res "config"}}</div>
 </section>
 
-<section class="ad" id="capabilities" aria-labelledby="capabilities-h">
-  <div class="ad-text">
+<section class="ref" id="capabilities" aria-labelledby="capabilities-h">
+  <div class="ref-text">
     <h2 id="capabilities-h">List criteria</h2>
     {{template "endpoint" index .Req "capabilities"}}
     <p>The test criteria, including retired ones. Configurations and reports refer to them by <code>id</code>, such as <code>network.wifi</code>. A <code>blocking</code> criterion (Boot) decides whether a configuration fails; the <a href="/criteria">criteria page</a> shows them all. <code>live</code> says whether a <a href="#live">live boot</a> can decide it.</p>
   </div>
-  <div class="ad-code">{{template "apicode" index .Req "capabilities"}}{{template "apicode" index .Res "capabilities"}}</div>
+  <div class="ref-code">{{template "apicode" index .Req "capabilities"}}{{template "apicode" index .Res "capabilities"}}</div>
 </section>
 
-<section class="ad" id="match" aria-labelledby="match-h">
-  <div class="ad-text">
+<section class="ref" id="match" aria-labelledby="match-h">
+  <div class="ref-text">
     <h2 id="match-h">Identify a Mac</h2>
     {{template "endpoint" index .Req "match"}}
     <p>Send what a Mac reports about its hardware, and get back the Mac and its configuration. It's the same matching as <a href="/identify">Identify my Mac</a>. Send any of these; more IDs give a surer match.</p>
@@ -381,11 +381,11 @@
     <p><code>config</code> is the best configuration, or <code>null</code> when several fit equally. <code>best</code> lists every configuration tied at the top (just one when <code>exact</code>); their order means nothing. <code>candidates</code> ranks them all, with the IDs each <code>matched</code> and its parts <code>not_reported</code>.</p>
     <p>From a browser, leave out the <code>Content-Type</code> header, as the JavaScript sample does: the request then needs no CORS preflight.</p>
   </div>
-  <div class="ad-code">{{template "apicode" index .Req "match"}}{{template "apicode" index .Res "match"}}</div>
+  <div class="ref-code">{{template "apicode" index .Req "match"}}{{template "apicode" index .Res "match"}}</div>
 </section>
 
-<section class="ad" id="versioning" aria-labelledby="versioning-h">
-  <div class="ad-text">
+<section class="ref" id="versioning" aria-labelledby="versioning-h">
+  <div class="ref-text">
     <h2 id="versioning-h">Versions and rules</h2>
     <ul>
       <li>Only send results from real test runs on real hardware.</li>
@@ -396,8 +396,8 @@
   </div>
 </section>
 
-<section class="ad ad-wide" id="changelog" aria-labelledby="changelog-h">
-  <div class="ad-text">
+<section class="ref ref-wide" id="changelog" aria-labelledby="changelog-h">
+  <div class="ref-text">
     <h2 id="changelog-h">API changelog</h2>
     <p>Changes to the API and the report format, newest first. Changes to the catalog itself are in the <a href="/changelog">catalog changelog</a>.</p>
     <ol class="changelog">

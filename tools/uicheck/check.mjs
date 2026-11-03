@@ -2,7 +2,8 @@
 //   - axe-core WCAG 2 A/AA on the key pages at 360px and 1440px
 //   - colour contrast on a few pages in every theme (port map colours and the
 //     known-limitation warning icon included)
-//   - layout: no horizontal page scroll; matrix header links clickable
+//   - layout: no horizontal page scroll; matrix header links clickable; no
+//     class or id an ad blocker would hide
 //
 // Usage: BASE=http://127.0.0.1:8080 CHROME=/usr/bin/chromium node check.mjs
 // Checks run in parallel, each in a fresh tab (JOBS, default: one per CPU).
@@ -138,6 +139,12 @@ for (const path of pages) {
           const r = a.getBoundingClientRect();
           const hit = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
           if (!hit || !(hit === a || a.contains(hit))) out.push(`matrix header link not clickable: ${a.textContent.trim()}`);
+        });
+        // Ad blockers (Brave Shields, uBlock Origin) hide any element whose
+        // class or id looks like an ad: EasyList has ##.ad-text, ##.ad-code...
+        document.querySelectorAll("[class], [id]").forEach((e) => {
+          const names = [...e.classList, e.id].filter((n) => /^(ad|ads|advert\w*|sponsor\w*|banner)([-_]|$)/i.test(n));
+          if (names.length) out.push(`ad-blocker bait name (renders hidden with Shields/uBlock): ${names.join(" ")}`);
         });
         return out;
       });
