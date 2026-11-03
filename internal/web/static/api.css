@@ -9,24 +9,25 @@
 .apidoc-nav a:hover { color: var(--heading); text-decoration: none; }
 .apidoc-nav a[aria-current="true"] { color: var(--heading); border-left-color: var(--accent); }
 .apidoc-nav .group { margin: 0 0 0.35rem; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-/* Each section: its explanation, and its code beside it, kept in view. */
-.ad { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 2.5rem; align-items: start; padding: 2rem 0; border-top: 1px solid var(--line); scroll-margin-top: 0.5rem; }
-.ad:first-of-type { border-top: 0; padding-top: 0; }
-.ad-text { font: 15px/1.6 var(--sans); min-width: 0; }
-.ad-text h1, .ad-text h2 { font-family: var(--mono); }
-.ad-text h2 { font-size: 1.15rem; }
-.ad-text h3 { font: 500 11px/1.4 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 1.25rem 0 0.2rem; }
-.ad-text code { font-family: var(--mono); font-size: 13px; overflow-wrap: anywhere; }
-.ad-text ul { padding-left: 1.2rem; }
-.ad-text li { margin-bottom: 0.35rem; }
-.ad-text li a, .ad-text td a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
-.ad-text .lead { font-size: 17px; color: var(--heading); }
-.ad-text table.defs td { font-size: 14px; }
+/* Each section: its explanation, and its code beside it, kept in view.
+   Never name these .ad-*: ad blockers' lists hide .ad-text, .ad-code... */
+.ref { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 2.5rem; align-items: start; padding: 2rem 0; border-top: 1px solid var(--line); scroll-margin-top: 0.5rem; }
+.ref:first-of-type { border-top: 0; padding-top: 0; }
+.ref-text { font: 15px/1.6 var(--sans); min-width: 0; }
+.ref-text h1, .ref-text h2 { font-family: var(--mono); }
+.ref-text h2 { font-size: 1.15rem; }
+.ref-text h3 { font: 500 11px/1.4 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 1.25rem 0 0.2rem; }
+.ref-text code { font-family: var(--mono); font-size: 13px; overflow-wrap: anywhere; }
+.ref-text ul { padding-left: 1.2rem; }
+.ref-text li { margin-bottom: 0.35rem; }
+.ref-text li a, .ref-text td a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+.ref-text .lead { font-size: 17px; color: var(--heading); }
+.ref-text table.defs td { font-size: 14px; }
 /* A section with no code (the changelog) reads across both columns. */
-.ad-wide .ad-text { grid-column: 1 / -1; max-width: 80ch; }
-.ad-text .changelog { margin-top: 1rem; }
-.ad-text .changelog h3 { font: 700 1rem/1.25 var(--mono); letter-spacing: normal; text-transform: none; text-wrap: pretty; color: var(--heading); margin: 0 0 0.5rem; }
-.ad-code { position: sticky; top: 1rem; min-width: 0; display: grid; gap: 1rem; }
+.ref-wide .ref-text { grid-column: 1 / -1; max-width: 80ch; }
+.ref-text .changelog { margin-top: 1rem; }
+.ref-text .changelog h3 { font: 700 1rem/1.25 var(--mono); letter-spacing: normal; text-transform: none; text-wrap: pretty; color: var(--heading); margin: 0 0 0.5rem; }
+.ref-code { position: sticky; top: 1rem; min-width: 0; display: grid; gap: 1rem; }
 .endpoint { font: 500 14px/1.5 var(--mono); margin: -0.15rem 0 0.9rem; color: var(--heading); overflow-wrap: anywhere; }
 .endpoint .m, .code-title .m { color: var(--syn-kw); font-weight: 700; margin-right: 0.15rem; }
 /* Code panels: Carbon-style, no outline; the background a step off the page. */
@@ -74,16 +75,16 @@ html.js .code-lang { display: none; }
   .apidoc-nav .group { display: none; }
   .apidoc-nav a { white-space: nowrap; border-left: 0; border-bottom: 2px solid transparent; padding: 0.55rem 0.6rem; }
   .apidoc-nav a[aria-current="true"] { border-bottom-color: var(--accent); }
-  .ad { scroll-margin-top: 3rem; }
-  .ad:first-of-type { padding-top: 1.5rem; }
-  .ad-code { top: 3.5rem; }
+  .ref { scroll-margin-top: 3rem; }
+  .ref:first-of-type { padding-top: 1.5rem; }
+  .ref-code { top: 3.5rem; }
 }
 /* Phones: code follows its explanation. */
 @media (max-width: 760px) {
-  .ad { grid-template-columns: minmax(0, 1fr); }
-  .ad-code { position: static; margin-top: 0.5rem; }
+  .ref { grid-template-columns: minmax(0, 1fr); }
+  .ref-code { position: static; margin-top: 0.5rem; }
 }
 /* A two-line call to action: the action, then what it gets you, smaller. */
-.ad-cta { margin: 0 0 1rem; }
+.ref-cta { margin: 0 0 1rem; }
 .btn-cta.btn-two { flex-direction: column; align-items: flex-start; gap: 0.15rem; line-height: 1.25; }
 .btn-cta.btn-two .btn-sub { font-size: 12px; font-weight: 400; opacity: 0.9; }
